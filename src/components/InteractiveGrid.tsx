@@ -20,14 +20,14 @@ export const InteractiveGrid = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  const gridItems = Array.from({ length: 400 }, (_, i) => {
-    const row = Math.floor(i / 20);
-    const col = i % 20;
+  const gridItems = Array.from({ length: 100 }, (_, i) => {
+    const row = Math.floor(i / 10);
+    const col = i % 10;
     const distance = Math.sqrt(
-      Math.pow((col * 5) - mousePosition.x, 2) + 
-      Math.pow((row * 5) - mousePosition.y, 2)
+      Math.pow((col * 10) - mousePosition.x, 2) + 
+      Math.pow((row * 10) - mousePosition.y, 2)
     );
-    const intensity = Math.max(0, 1 - distance / 50);
+    const intensity = Math.max(0, 1 - distance / 30);
     
     return { id: i, intensity };
   });
@@ -40,7 +40,7 @@ export const InteractiveGrid = () => {
         background: `radial-gradient(circle at ${mousePosition.x}% ${mousePosition.y}%, rgba(255,255,255,0.05) 0%, transparent 50%)`,
       }}
     >
-      <div className="grid grid-cols-20 grid-rows-20 h-full w-full">
+      <div className="grid grid-cols-10 grid-rows-10 h-full w-full">
         {gridItems.map((item) => (
           <div
             key={item.id}

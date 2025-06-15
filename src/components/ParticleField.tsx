@@ -16,6 +16,7 @@ export const ParticleField = () => {
   const animationRef = useRef<number>();
   const particlesRef = useRef<Particle[]>([]);
   const mouseRef = useRef({ x: 0, y: 0 });
+  const maxParticles = 50; // Limit particles for better performance
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -59,8 +60,8 @@ export const ParticleField = () => {
         return particle.life < particle.maxLife;
       });
 
-      // Add new particles randomly
-      if (Math.random() < 0.1) {
+      // Add new particles with limit
+      if (Math.random() < 0.05 && particlesRef.current.length < maxParticles) {
         particlesRef.current.push(createParticle(
           Math.random() * canvas.width,
           Math.random() * canvas.height

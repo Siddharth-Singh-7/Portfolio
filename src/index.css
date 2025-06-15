@@ -177,13 +177,13 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Grid utilities */
-.grid-cols-20 {
-  grid-template-columns: repeat(20, minmax(0, 1fr));
+/* Grid utilities - Fixed */
+.grid-cols-10 {
+  grid-template-columns: repeat(10, minmax(0, 1fr));
 }
 
-.grid-rows-20 {
-  grid-template-rows: repeat(20, minmax(0, 1fr));
+.grid-rows-10 {
+  grid-template-rows: repeat(10, minmax(0, 1fr));
 }
 
 /* Smooth transitions for all elements */
