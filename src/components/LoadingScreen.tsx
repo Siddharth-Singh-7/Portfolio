@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Suspense } from 'react';
 import { Button } from './ui/button';
@@ -16,26 +16,81 @@ interface LoadingScreenProps {
 export const LoadingScreen = ({ onEnterWebsite }: LoadingScreenProps) => {
   const [progress, setProgress] = useState(0);
   const [showButton, setShowButton] = useState(false);
+  const [nameProgress, setNameProgress] = useState(0);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const nameRef = useRef<HTMLDivElement>(null);
+
+  const fullName = "Siddharth Singh";
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(timer);
-          setTimeout(() => setShowButton(true), 500);
-          return 100;
-        }
-        return prev + 2;
-      });
-    }, 50);
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
 
-    return () => clearInterval(timer);
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  useEffect(() => {
+    // First animate the name typing effect
+    const nameTimer = setInterval(() => {
+      setNameProgress((prev) => {
+        if (prev >= fullName.length) {
+          clearInterval(nameTimer);
+          // Start progress bar after name is complete
+          setTimeout(() => {
+            const progressTimer = setInterval(() => {
+              setProgress((prevProgress) => {
+                if (prevProgress >= 100) {
+                  clearInterval(progressTimer);
+                  setTimeout(() => setShowButton(true), 500);
+                  return 100;
+                }
+                return prevProgress + 2;
+              });
+            }, 50);
+          }, 1000);
+          return prev;
+        }
+        return prev + 1;
+      });
+    }, 150);
+
+    return () => clearInterval(nameTimer);
   }, []);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black text-white overflow-hidden cursor-none">
       {/* Custom mouse cursor */}
       <MouseCursor />
+      
+      {/* 3D Cursor Following Effect */}
+      <div 
+        className="fixed pointer-events-none z-20 transition-all duration-300 ease-out"
+        style={{
+          transform: `translate3d(${mousePosition.x - 100}px, ${mousePosition.y - 100}px, 0)`,
+        }}
+      >
+        <div className="relative w-48 h-48">
+          {/* Outer ring that follows cursor */}
+          <div className="absolute inset-0 border-2 border-purple-500/30 rounded-full animate-spin" style={{ animationDuration: '8s' }}>
+            <div className="absolute top-0 left-1/2 w-3 h-3 bg-purple-500 rounded-full transform -translate-x-1/2 -translate-y-1.5"></div>
+          </div>
+          
+          {/* Middle ring */}
+          <div className="absolute inset-4 border border-blue-500/20 rounded-full animate-spin" style={{ animationDuration: '6s', animationDirection: 'reverse' }}>
+            <div className="absolute top-0 left-1/2 w-2 h-2 bg-blue-500 rounded-full transform -translate-x-1/2 -translate-y-1"></div>
+          </div>
+          
+          {/* Inner ring */}
+          <div className="absolute inset-8 border border-green-500/15 rounded-full animate-spin" style={{ animationDuration: '4s' }}>
+            <div className="absolute top-0 left-1/2 w-1.5 h-1.5 bg-green-500 rounded-full transform -translate-x-1/2 -translate-y-0.75"></div>
+          </div>
+          
+          {/* Center glow */}
+          <div className="absolute top-1/2 left-1/2 w-8 h-8 bg-white/10 rounded-full blur-md transform -translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
+        </div>
+      </div>
       
       {/* 3D Background Scene */}
       <div className="fixed inset-0 z-0 opacity-60">
@@ -58,7 +113,7 @@ export const LoadingScreen = ({ onEnterWebsite }: LoadingScreenProps) => {
 
       {/* Loading Content */}
       <div className="relative z-10 text-center space-y-8">
-        <div className="space-y-6">
+        <div className="space-y-8">
           {/* Animated 3D-style spinner */}
           <div className="relative mx-auto mb-8">
             <div className="animate-spin w-20 h-20 border-4 border-transparent rounded-full mx-auto relative">
@@ -71,36 +126,54 @@ export const LoadingScreen = ({ onEnterWebsite }: LoadingScreenProps) => {
             <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full animate-pulse"></div>
           </div>
 
-          {/* Enhanced title with gradient */}
-          <div className="space-y-2">
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent animate-shimmer">
-              Siddharth Singh
-            </h2>
-            <p className="text-xl text-gray-300 font-light tracking-wide">
+          {/* Enhanced name with typing effect */}
+          <div className="space-y-4" ref={nameRef}>
+            <div className="relative">
+              <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">
+                {fullName.slice(0, nameProgress)}
+                {nameProgress < fullName.length && (
+                  <span className="animate-pulse text-white">|</span>
+                )}
+              </h1>
+              
+              {/* Glowing underline that grows with the name */}
+              <div 
+                className="h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-blue-500 rounded-full mx-auto mt-2 transition-all duration-300"
+                style={{ width: `${(nameProgress / fullName.length) * 100}%`, maxWidth: '400px' }}
+              ></div>
+            </div>
+            
+            <p className="text-xl text-gray-300 font-light tracking-wide opacity-0 animate-fade-in" style={{ animationDelay: '3s', animationFillMode: 'forwards' }}>
               AI Enthusiast & Full-Stack Developer
             </p>
-            <div className="flex justify-center space-x-2 mt-4">
-              <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-              <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-              <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
-            </div>
+            
+            {/* Loading dots that appear after name */}
+            {nameProgress >= fullName.length && (
+              <div className="flex justify-center space-x-2 mt-4 animate-fade-in">
+                <div className="w-2 h-2 bg-purple-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                <div className="w-2 h-2 bg-blue-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                <div className="w-2 h-2 bg-green-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+              </div>
+            )}
           </div>
           
-          {/* Enhanced progress bar */}
-          <div className="relative w-80 mx-auto">
-            <div className="w-full bg-gray-800/50 backdrop-blur-sm rounded-full h-4 border border-gray-600/30">
-              <div 
-                className="bg-gradient-to-r from-purple-500 via-blue-500 to-green-500 h-4 rounded-full transition-all duration-300 relative overflow-hidden"
-                style={{ width: `${progress}%` }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
+          {/* Enhanced progress bar - only shows after name is complete */}
+          {nameProgress >= fullName.length && (
+            <div className="relative w-80 mx-auto animate-fade-in" style={{ animationDelay: '1s', animationFillMode: 'forwards', opacity: 0 }}>
+              <div className="w-full bg-gray-800/50 backdrop-blur-sm rounded-full h-4 border border-gray-600/30">
+                <div 
+                  className="bg-gradient-to-r from-purple-500 via-blue-500 to-green-500 h-4 rounded-full transition-all duration-300 relative overflow-hidden"
+                  style={{ width: `${progress}%` }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
+                </div>
+              </div>
+              <div className="flex justify-between mt-2">
+                <span className="text-sm text-gray-400">Loading...</span>
+                <span className="text-sm text-purple-400 font-semibold">{progress}%</span>
               </div>
             </div>
-            <div className="flex justify-between mt-2">
-              <span className="text-sm text-gray-400">Loading...</span>
-              <span className="text-sm text-purple-400 font-semibold">{progress}%</span>
-            </div>
-          </div>
+          )}
         </div>
 
         {/* Enhanced button with 3D effects */}
