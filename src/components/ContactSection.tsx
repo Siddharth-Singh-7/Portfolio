@@ -1,7 +1,7 @@
 
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
-import { Github, Linkedin, Mail, MapPin, Send } from "lucide-react";
+import { Github, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 
 export const ContactSection = () => {
   return (
@@ -70,15 +70,18 @@ export const ContactSection = () => {
               <Linkedin className="mr-2 h-5 w-5" />
               LinkedIn Profile
             </Button>
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="bg-gradient-to-r from-emerald-600/30 to-teal-600/30 hover:from-emerald-500/40 hover:to-teal-500/40 border-emerald-400/60 text-emerald-100 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-emerald-500/30"
-              onClick={() => window.open('mailto:siddharthsinghh71@gmail.com', '_blank')}
-            >
-              <Send className="mr-2 h-5 w-5" />
-              Send Message
-            </Button>
+          </div>
+
+          <div className="mb-6 relative z-10">
+            <div className="flex items-center justify-center gap-3 p-4 bg-gradient-to-r from-green-600/20 to-emerald-600/20 border border-green-400/40 rounded-lg backdrop-blur-sm">
+              <Phone className="w-5 h-5 text-green-400" />
+              <a 
+                href="tel:+916394004221"
+                className="text-lg text-green-100 hover:text-green-200 transition-colors duration-200 font-medium"
+              >
+                +91-6394004221
+              </a>
+            </div>
           </div>
 
           <div className="text-center text-gray-400 relative z-10">
