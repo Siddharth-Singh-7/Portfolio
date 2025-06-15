@@ -17,8 +17,9 @@ export const AchievementsSection = () => {
       icon: Trophy,
       details: "Built a comprehensive AI-powered healthcare solution that intelligently analyzes patient data and provides personalized treatment recommendations. The project involved complex machine learning algorithms, natural language processing for symptom analysis, and a user-friendly interface for both patients and healthcare providers. Our team worked for 48 hours straight, implementing features like real-time health monitoring, predictive analytics, and automated report generation.",
       photos: [
-        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56",
-        "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789"
+        "/lovable-uploads/31934c91-cf56-4df4-8870-1811f30767b2.png",
+        "/lovable-uploads/f178e685-31e6-40b4-9ea9-e62d6c49a2cf.png",
+        "/lovable-uploads/6d0ed6c3-60df-4ce0-88ff-91e580ec1847.png"
       ],
       skills: ["React", "Python", "Machine Learning", "TensorFlow", "Natural Language Processing", "UI/UX Design", "Team Leadership"]
     },
