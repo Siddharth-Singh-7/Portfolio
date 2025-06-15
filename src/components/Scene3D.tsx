@@ -1,7 +1,7 @@
 
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { OrbitControls, Environment, Float, Stars, Sphere, Ring } from '@react-three/drei';
+import { OrbitControls, Environment, Float, Stars } from '@react-three/drei';
 import { Group, Mesh } from 'three';
 
 export const Scene3D = () => {
@@ -63,32 +63,37 @@ export const Scene3D = () => {
           </mesh>
         </Float>
 
-        {/* Rotating rings around the sphere */}
+        {/* Rotating rings around the sphere - Fixed to use proper ring geometry */}
         <group ref={ringsRef} position={[0, 0, -8]}>
-          <Ring args={[2.5, 2.7, 64]} rotation={[Math.PI / 2, 0, 0]}>
+          <mesh rotation={[Math.PI / 2, 0, 0]}>
+            <ringGeometry args={[2.5, 2.7, 64]} />
             <meshStandardMaterial 
               color="#4f46e5"
               transparent
               opacity={0.3}
               wireframe
             />
-          </Ring>
-          <Ring args={[3.2, 3.4, 64]} rotation={[0, Math.PI / 2, 0]}>
+          </mesh>
+          
+          <mesh rotation={[0, Math.PI / 2, 0]}>
+            <ringGeometry args={[3.2, 3.4, 64]} />
             <meshStandardMaterial 
               color="#06b6d4"
               transparent
               opacity={0.25}
               wireframe
             />
-          </Ring>
-          <Ring args={[3.8, 4.0, 64]} rotation={[Math.PI / 4, Math.PI / 4, 0]}>
+          </mesh>
+          
+          <mesh rotation={[Math.PI / 4, Math.PI / 4, 0]}>
+            <ringGeometry args={[3.8, 4.0, 64]} />
             <meshStandardMaterial 
               color="#10b981"
               transparent
               opacity={0.2}
               wireframe
             />
-          </Ring>
+          </mesh>
         </group>
 
         {/* Enhanced orbital elements */}
