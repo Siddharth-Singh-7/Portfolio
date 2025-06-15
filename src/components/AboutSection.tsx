@@ -1,70 +1,90 @@
 
-import { Card, CardContent } from "./ui/card";
-import { Brain, Users, Zap, Target } from "lucide-react";
+import { User, Brain, Users, Zap, Target, Heart } from "lucide-react";
 
 export const AboutSection = () => {
   const traits = [
-    { name: "Ambivert", description: "Balanced social energy", icon: Users },
-    { name: "Intuitive", description: "Future-focused thinking", icon: Brain },
-    { name: "Thinker", description: "Logic-driven decisions", icon: Zap },
-    { name: "Judger", description: "Organized approach", icon: Target }
+    { icon: User, label: "Ambivert", description: "Balance of introversion and extroversion" },
+    { icon: Brain, label: "Intuitive", description: "Future-focused and innovative thinking" },
+    { icon: Target, label: "Thinker", description: "Logical and analytical approach" },
+    { icon: Zap, label: "Judger", description: "Structured and decisive" }
   ];
 
-  const powerSkills = ["Communication", "Teamwork", "Adaptability"];
+  const powerSkills = [
+    { icon: Users, label: "Communication", level: 90 },
+    { icon: Heart, label: "Teamwork", level: 95 },
+    { icon: Zap, label: "Adaptability", level: 85 }
+  ];
 
   return (
     <section className="py-20 px-4 max-w-6xl mx-auto relative">
-      {/* Section header with neon glow */}
-      <div className="text-center mb-16 relative">
+      <div className="text-center mb-16">
         <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
           About Me
         </h2>
-        <div className="absolute inset-0 text-4xl md:text-5xl font-bold text-cyan-400 opacity-10 blur-sm">
-          About Me
-        </div>
-        <p className="text-lg text-gray-300 max-w-3xl mx-auto relative z-10">
-          A passionate full-stack developer with expertise in modern technologies and AI tools. 
-          I love building innovative solutions and pushing the boundaries of what's possible with code.
+        <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+          A passionate full-stack developer with expertise in modern technologies and a keen interest in AI. 
+          I love solving complex problems and building innovative solutions that make a difference.
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-8 mb-12">
-        {/* Personality traits with holographic effect */}
-        <Card className="bg-gradient-to-br from-cyan-900/20 to-blue-900/20 border border-cyan-500/30 backdrop-blur-sm hover:border-cyan-400/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/20">
-          <CardContent className="p-6 relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/5 to-blue-400/5 rounded-lg"></div>
-            <h3 className="text-2xl font-bold mb-4 text-cyan-400 relative z-10">Personality Traits</h3>
-            <div className="grid grid-cols-2 gap-4 relative z-10">
-              {traits.map((trait, index) => {
-                const IconComponent = trait.icon;
-                return (
-                  <div key={index} className="text-center p-3 rounded-lg bg-cyan-500/10 border border-cyan-500/20 hover:bg-cyan-500/20 transition-all duration-300">
-                    <IconComponent className="w-6 h-6 mx-auto mb-2 text-cyan-400" />
-                    <div className="font-semibold text-cyan-300">{trait.name}</div>
-                    <div className="text-xs text-gray-400">{trait.description}</div>
+      <div className="grid md:grid-cols-2 gap-12 items-center">
+        {/* Personality Traits */}
+        <div className="space-y-6">
+          <h3 className="text-2xl font-bold text-cyan-400 mb-6">Personality Traits</h3>
+          <div className="grid grid-cols-2 gap-4">
+            {traits.map((trait, index) => {
+              const IconComponent = trait.icon;
+              return (
+                <div 
+                  key={index}
+                  className="bg-gradient-to-br from-gray-900/50 to-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-lg p-4 hover:border-purple-400/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-400/10 group"
+                >
+                  <div className="flex flex-col items-center text-center space-y-2">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-cyan-500 p-0.5 group-hover:animate-spin">
+                      <div className="w-full h-full bg-black rounded-full flex items-center justify-center">
+                        <IconComponent className="w-6 h-6 text-white" />
+                      </div>
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-white">{trait.label}</h4>
+                      <p className="text-xs text-gray-400">{trait.description}</p>
+                    </div>
                   </div>
-                );
-              })}
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Power skills with tech aesthetic */}
-        <Card className="bg-gradient-to-br from-purple-900/20 to-pink-900/20 border border-purple-500/30 backdrop-blur-sm hover:border-purple-400/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-400/20">
-          <CardContent className="p-6 relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-400/5 to-pink-400/5 rounded-lg"></div>
-            <h3 className="text-2xl font-bold mb-4 text-purple-400 relative z-10">Power Skills</h3>
-            <div className="space-y-3 relative z-10">
-              {powerSkills.map((skill, index) => (
-                <div key={index} className="flex items-center space-x-3 group">
-                  <div className="w-3 h-3 bg-purple-400 rounded-full animate-pulse group-hover:scale-125 transition-transform duration-300"></div>
-                  <span className="text-gray-300 group-hover:text-purple-300 transition-colors duration-300">{skill}</span>
-                  <div className="flex-1 h-px bg-gradient-to-r from-purple-400/50 to-transparent"></div>
                 </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Power Skills */}
+        <div className="space-y-6">
+          <h3 className="text-2xl font-bold text-green-400 mb-6">Power Skills</h3>
+          <div className="space-y-4">
+            {powerSkills.map((skill, index) => {
+              const IconComponent = skill.icon;
+              return (
+                <div 
+                  key={index}
+                  className="bg-gradient-to-r from-gray-900/50 to-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-lg p-4 hover:border-green-400/50 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-green-400/10"
+                >
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-3">
+                      <IconComponent className="w-6 h-6 text-green-400" />
+                      <span className="text-white font-medium">{skill.label}</span>
+                    </div>
+                    <span className="text-sm text-gray-400">{skill.level}%</span>
+                  </div>
+                  <div className="w-full bg-gray-700/50 rounded-full h-2">
+                    <div 
+                      className="h-2 rounded-full bg-gradient-to-r from-green-400 to-cyan-400 transition-all duration-1000"
+                      style={{ width: `${skill.level}%` }}
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
   );
