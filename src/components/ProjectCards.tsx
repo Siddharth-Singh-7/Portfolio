@@ -2,7 +2,7 @@
 import { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { RoundedBox, Text, Html } from '@react-three/drei';
-import { Mesh, Group } from 'three';
+import { Mesh } from 'three';
 import { useSpring, animated } from '@react-spring/three';
 
 const projects = [

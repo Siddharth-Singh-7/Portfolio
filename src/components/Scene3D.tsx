@@ -1,7 +1,8 @@
 
-import { useRef, useFrame } from '@react-three/fiber';
+import { useRef } from 'react';
+import { useFrame } from '@react-three/fiber';
 import { OrbitControls, Environment, Float, Text3D, Center, MeshDistortMaterial, Sphere } from '@react-three/drei';
-import { Mesh, Group } from 'three';
+import { Group } from 'three';
 import { ProjectCards } from './ProjectCards';
 import { SkillsOrb } from './SkillsOrb';
 
