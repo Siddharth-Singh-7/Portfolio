@@ -2,7 +2,7 @@
 import { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Sphere, Text, Html } from '@react-three/drei';
-import * as THREE from 'three';
+import { Group } from 'three';
 
 const skills = [
   { name: "JavaScript", level: 85, color: "#f7df1e" },
@@ -14,7 +14,7 @@ const skills = [
 ];
 
 export const SkillsOrb = () => {
-  const groupRef = useRef<THREE.Group>(null);
+  const groupRef = useRef<Group>(null);
   const [showSkills, setShowSkills] = useState(false);
 
   useFrame((state) => {
@@ -47,7 +47,6 @@ export const SkillsOrb = () => {
         color="white"
         anchorX="center"
         anchorY="middle"
-        font="/fonts/helvetiker_bold.typeface.json"
       >
         SKILLS
       </Text>
