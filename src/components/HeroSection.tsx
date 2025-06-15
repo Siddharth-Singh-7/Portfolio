@@ -3,6 +3,11 @@ import { Button } from "./ui/button";
 import { Github, Linkedin, FileText, ArrowRight } from "lucide-react";
 
 export const HeroSection = () => {
+  const handleViewResume = () => {
+    // Open the CV in a new tab
+    window.open('/siddharthsinghcv_Latest.pdf', '_blank');
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center relative">
       <div className="max-w-4xl mx-auto text-center space-y-12 px-4 z-10">
@@ -40,6 +45,7 @@ export const HeroSection = () => {
             variant="outline" 
             size="lg"
             className="bg-transparent border-white/20 text-white hover:bg-white/5 backdrop-blur-sm transition-all duration-300 group"
+            onClick={handleViewResume}
           >
             <FileText className="mr-2 h-4 w-4" />
             View Resume
