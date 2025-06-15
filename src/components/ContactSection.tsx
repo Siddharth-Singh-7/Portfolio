@@ -56,6 +56,7 @@ export const ContactSection = () => {
               variant="outline" 
               size="lg"
               className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 hover:from-purple-500/30 hover:to-pink-500/30 border-purple-400/50 text-purple-100 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-400/25"
+              onClick={() => window.open('https://github.com/Siddharth-Singh-7', '_blank')}
             >
               <Github className="mr-2 h-5 w-5" />
               GitHub Profile
@@ -64,6 +65,7 @@ export const ContactSection = () => {
               variant="outline" 
               size="lg"
               className="bg-gradient-to-r from-blue-500/20 to-cyan-500/20 hover:from-blue-500/30 hover:to-cyan-500/30 border-blue-400/50 text-blue-100 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-400/25"
+              onClick={() => window.open('https://www.linkedin.com/in/siddharth-singh-6414432b2/', '_blank')}
             >
               <Linkedin className="mr-2 h-5 w-5" />
               LinkedIn Profile
@@ -72,6 +74,7 @@ export const ContactSection = () => {
               variant="outline" 
               size="lg"
               className="bg-gradient-to-r from-cyan-500/20 to-green-500/20 hover:from-cyan-500/30 hover:to-green-500/30 border-cyan-400/50 text-cyan-100 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-400/25"
+              onClick={() => window.open('mailto:siddharthsinghh71@gmail.com', '_blank')}
             >
               <Send className="mr-2 h-5 w-5" />
               Send Message

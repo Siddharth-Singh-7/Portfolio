@@ -49,6 +49,7 @@ export const HeroSection = () => {
             variant="outline" 
             size="lg"
             className="bg-transparent border-white/20 text-white hover:bg-white/5 backdrop-blur-sm transition-all duration-300 group"
+            onClick={() => window.open('https://github.com/Siddharth-Singh-7', '_blank')}
           >
             <Github className="mr-2 h-4 w-4" />
             GitHub
@@ -57,6 +58,7 @@ export const HeroSection = () => {
             variant="outline" 
             size="lg"
             className="bg-transparent border-white/20 text-white hover:bg-white/5 backdrop-blur-sm transition-all duration-300 group"
+            onClick={() => window.open('https://www.linkedin.com/in/siddharth-singh-6414432b2/', '_blank')}
           >
             <Linkedin className="mr-2 h-4 w-4" />
             LinkedIn
