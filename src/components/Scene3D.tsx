@@ -41,6 +41,7 @@ export const Scene3D = () => {
         <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
           <Center position={[0, 3, 0]}>
             <Text3D
+              font="/fonts/helvetiker_bold.typeface.json"
               size={0.8}
               height={0.1}
               curveSegments={12}
@@ -65,6 +66,7 @@ export const Scene3D = () => {
         <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.3}>
           <Center position={[0, 1.8, 0]}>
             <Text3D
+              font="/fonts/helvetiker_regular.typeface.json"
               size={0.3}
               height={0.05}
               curveSegments={12}
