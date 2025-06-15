@@ -1,43 +1,33 @@
 
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { OrbitControls, Environment, Float, Stars, Sparkles, Text } from '@react-three/drei';
+import { OrbitControls, Environment, Float, Stars } from '@react-three/drei';
 import { Group, Mesh } from 'three';
 
 export const Scene3D = () => {
   const groupRef = useRef<Group>(null);
-  const logoRef = useRef<Mesh>(null);
-  const ringRef = useRef<Mesh>(null);
+  const sphereRef = useRef<Mesh>(null);
 
   useFrame((state) => {
     if (groupRef.current) {
-      groupRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.1) * 0.05;
+      groupRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.1) * 0.02;
     }
     
-    if (logoRef.current) {
-      logoRef.current.rotation.y = state.clock.elapsedTime * 0.2;
-      logoRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.5) * 0.3;
-    }
-
-    if (ringRef.current) {
-      ringRef.current.rotation.z = state.clock.elapsedTime * 0.3;
-      ringRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.2) * 0.1;
+    if (sphereRef.current) {
+      sphereRef.current.rotation.y = state.clock.elapsedTime * 0.1;
+      sphereRef.current.position.y = Math.sin(state.clock.elapsedTime * 0.3) * 0.2;
     }
   });
 
   return (
     <>
-      {/* Enhanced Lighting for tech atmosphere */}
-      <ambientLight intensity={0.2} />
-      <directionalLight position={[10, 10, 5]} intensity={1.2} color="#00ffff" />
-      <pointLight position={[-10, -10, -10]} intensity={1.5} color="#ff00ff" />
-      <pointLight position={[10, -10, 10]} intensity={1} color="#00ff88" />
-      <spotLight position={[0, 15, 0]} intensity={1} color="#ffff00" angle={0.3} />
+      {/* Minimal lighting */}
+      <ambientLight intensity={0.1} />
+      <directionalLight position={[10, 10, 5]} intensity={0.3} color="#ffffff" />
       
       {/* Environment */}
       <Environment preset="night" />
-      <Stars radius={500} depth={100} count={5000} factor={15} />
-      <Sparkles count={200} scale={20} size={4} speed={0.8} />
+      <Stars radius={300} depth={50} count={2000} factor={4} />
       
       {/* Camera Controls */}
       <OrbitControls 
@@ -45,107 +35,47 @@ export const Scene3D = () => {
         enableZoom={false}
         enableRotate={true}
         autoRotate={true}
-        autoRotateSpeed={0.3}
-        minDistance={8}
-        maxDistance={25}
-        minPolarAngle={Math.PI / 6}
-        maxPolarAngle={Math.PI - Math.PI / 6}
+        autoRotateSpeed={0.2}
+        minDistance={10}
+        maxDistance={20}
       />
 
       <group ref={groupRef}>
-        {/* Central Tech Logo/Symbol */}
-        <Float speed={1.5} rotationIntensity={0.2} floatIntensity={0.4}>
-          <mesh ref={logoRef} position={[0, 0, -5]}>
-            <octahedronGeometry args={[2]} />
+        {/* Central minimalist sphere */}
+        <Float speed={1} rotationIntensity={0.1} floatIntensity={0.3}>
+          <mesh ref={sphereRef} position={[0, 0, -8]}>
+            <sphereGeometry args={[1.5, 32, 32]} />
             <meshStandardMaterial 
-              color="#00ffff" 
+              color="#ffffff" 
               transparent 
-              opacity={0.8}
-              roughness={0.1}
-              metalness={0.9}
-              emissive="#004444"
-              emissiveIntensity={0.6}
+              opacity={0.05}
+              roughness={0.8}
+              metalness={0.2}
+              wireframe
             />
           </mesh>
         </Float>
 
-        {/* Tech Ring Structure */}
-        <Float speed={2} rotationIntensity={0.3} floatIntensity={0.2}>
-          <mesh ref={ringRef} position={[0, 0, -8]}>
-            <torusGeometry args={[4, 0.2, 16, 100]} />
-            <meshStandardMaterial 
-              color="#ff00ff" 
-              transparent 
-              opacity={0.7}
-              roughness={0.1}
-              metalness={0.8}
-              emissive="#440044"
-              emissiveIntensity={0.5}
-            />
-          </mesh>
-        </Float>
-
-        {/* Orbiting Data Nodes - Tech themed */}
-        {Array.from({ length: 12 }).map((_, i) => {
-          const angle = (i / 12) * Math.PI * 2;
-          const radius = 6;
+        {/* Subtle orbital elements */}
+        {Array.from({ length: 6 }).map((_, i) => {
+          const angle = (i / 6) * Math.PI * 2;
+          const radius = 4;
           const x = Math.cos(angle) * radius;
           const z = Math.sin(angle) * radius;
-          const y = Math.sin(i * 2) * 1.5;
           
           return (
-            <Float key={i} speed={1 + i * 0.1} rotationIntensity={0.4} floatIntensity={0.3}>
-              <mesh position={[x, y, z]}>
-                <tetrahedronGeometry args={[0.2]} />
+            <Float key={i} speed={0.5 + i * 0.1} rotationIntensity={0.1} floatIntensity={0.2}>
+              <mesh position={[x, 0, z]}>
+                <sphereGeometry args={[0.05]} />
                 <meshStandardMaterial 
-                  color={`hsl(${(i * 30) % 360}, 80%, 60%)`}
-                  emissive={`hsl(${(i * 30) % 360}, 80%, 20%)`}
-                  emissiveIntensity={0.8}
+                  color="#ffffff"
                   transparent
-                  opacity={0.9}
+                  opacity={0.3}
                 />
               </mesh>
             </Float>
           );
         })}
-
-        {/* Floating Tech Panels */}
-        <Float speed={1.8} rotationIntensity={0.1} floatIntensity={0.2}>
-          <mesh position={[8, 2, -10]} rotation={[0, Math.PI / 4, 0]}>
-            <planeGeometry args={[3, 2]} />
-            <meshStandardMaterial 
-              color="#00ff88" 
-              transparent 
-              opacity={0.3}
-              emissive="#002200"
-              emissiveIntensity={0.3}
-            />
-          </mesh>
-        </Float>
-
-        <Float speed={2.2} rotationIntensity={0.1} floatIntensity={0.2}>
-          <mesh position={[-8, -1, -10]} rotation={[0, -Math.PI / 4, 0]}>
-            <planeGeometry args={[3, 2]} />
-            <meshStandardMaterial 
-              color="#ffff00" 
-              transparent 
-              opacity={0.3}
-              emissive="#333300"
-              emissiveIntensity={0.3}
-            />
-          </mesh>
-        </Float>
-
-        {/* Holographic Grid Lines */}
-        <mesh position={[0, -8, -5]} rotation={[Math.PI / 2, 0, 0]}>
-          <planeGeometry args={[20, 20, 20, 20]} />
-          <meshBasicMaterial 
-            color="#00ffff" 
-            wireframe 
-            transparent 
-            opacity={0.1}
-          />
-        </mesh>
       </group>
     </>
   );

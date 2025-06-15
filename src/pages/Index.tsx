@@ -19,17 +19,16 @@ const Index = () => {
       {/* Custom mouse cursor */}
       <MouseCursor />
       
-      {/* Enhanced animated background grid with tech patterns */}
-      <div className="fixed inset-0 bg-[linear-gradient(rgba(0,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.03)_1px,transparent_1px)] bg-[size:50px_50px] animate-pulse" />
-      <div className="fixed inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(120,119,198,0.1),transparent_50%)]" />
+      {/* Subtle grid background */}
+      <div className="fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:80px_80px]" />
       
       {/* Floating Tech Icons */}
       <FloatingTechIcons />
       
-      {/* 3D Scene Background */}
-      <div className="fixed inset-0 z-0">
+      {/* 3D Scene Background - more subtle */}
+      <div className="fixed inset-0 z-0 opacity-30">
         <Canvas
-          camera={{ position: [0, 0, 12], fov: 75 }}
+          camera={{ position: [0, 0, 15], fov: 60 }}
           className="w-full h-full"
           gl={{ antialias: true, alpha: true }}
         >
@@ -39,10 +38,10 @@ const Index = () => {
         </Canvas>
       </div>
 
-      {/* Main Content - Single Page Flow */}
+      {/* Main Content */}
       <div className="relative z-10">
         <HeroSection />
-        <div className="backdrop-blur-sm bg-black/10">
+        <div className="backdrop-blur-[1px] bg-black/20">
           <AboutSection />
           <SkillsSection />
           <ProjectsSection />
