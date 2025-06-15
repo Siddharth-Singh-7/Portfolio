@@ -33,8 +33,9 @@ export const AchievementsSection = () => {
       icon: Award,
       details: "Created an innovative campus navigation system that uses augmented reality to help students find their way around university campuses. The application combines GPS technology with AR overlays to provide real-time directions, building information, and event notifications. We implemented features like indoor navigation using WiFi triangulation, integration with university databases for real-time room availability, and a social component for students to share tips and reviews about campus locations.",
       photos: [
-        "https://images.unsplash.com/photo-1531297484001-80022131f5a1",
-        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3"
+        "/lovable-uploads/ad3e326c-dac8-480c-8496-80d106863e3a.png",
+        "/lovable-uploads/6c42cc7f-abed-42a4-8713-044a92377f59.png",
+        "/lovable-uploads/d478bceb-a7a9-4de1-b73b-eebb7d58babd.png"
       ],
       skills: ["React Native", "Augmented Reality", "GPS Integration", "Firebase", "UI/UX Design", "Problem Solving"]
     },
