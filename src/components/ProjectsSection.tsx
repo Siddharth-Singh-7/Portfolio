@@ -42,8 +42,11 @@ export const ProjectsSection = () => {
       gradient: "from-blue-500 to-purple-500",
       details: "Visualisation Pizza is a powerful data visualization platform that transforms complex datasets into intuitive, interactive visualizations. The platform features AI-powered data analysis, automatic chart generation, and intelligent labeling systems. Built with a Python backend for data processing and a React frontend for user interaction, it supports multiple data formats and provides real-time collaboration features for teams working on data analysis projects.",
       photos: [
-        "https://images.unsplash.com/photo-1551288049-bebda4e38f71",
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f"
+        "/lovable-uploads/8f8d0631-c93d-422c-9044-89e1f61d2993.png",
+        "/lovable-uploads/c1330d15-9354-4e83-9e65-30278e6c9ead.png",
+        "/lovable-uploads/e7897567-767a-499a-a411-7f0562777f0e.png",
+        "/lovable-uploads/0201ddec-195e-49db-8a54-1cb18497265a.png",
+        "/lovable-uploads/8c20a275-a0e4-4a4a-970a-9bd7e873ef32.png"
       ],
       features: [
         "AI-powered automatic chart type suggestions based on data structure",
