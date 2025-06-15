@@ -8,7 +8,7 @@ export const HeroSection = () => {
       <div className="max-w-4xl mx-auto text-center space-y-12 px-4 z-10">
         {/* Profile section */}
         <div className="space-y-8">
-          <div className="w-48 h-48 mx-auto relative">
+          <div className="w-80 h-80 mx-auto relative">
             <div className="w-full h-full rounded-full overflow-hidden border border-white/10 shadow-2xl">
               <img 
                 src="/lovable-uploads/04f69df9-7777-43ee-b204-2741b7ddd12a.png" 
