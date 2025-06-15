@@ -54,7 +54,7 @@ export const ContactSection = () => {
             <Button 
               variant="outline" 
               size="lg"
-              className="bg-gradient-to-r from-violet-600/30 to-purple-600/30 hover:from-violet-500/40 hover:to-purple-500/40 border-violet-400/60 text-violet-100 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-violet-500/30"
+              className="bg-transparent border-white/20 text-white hover:bg-white/5 backdrop-blur-sm transition-all duration-300"
               onClick={() => window.open('https://github.com/Siddharth-Singh-7', '_blank')}
             >
               <Github className="mr-2 h-5 w-5" />
@@ -63,7 +63,7 @@ export const ContactSection = () => {
             <Button 
               variant="outline" 
               size="lg"
-              className="bg-gradient-to-r from-blue-600/30 to-indigo-600/30 hover:from-blue-500/40 hover:to-indigo-500/40 border-blue-400/60 text-blue-100 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/30"
+              className="bg-transparent border-white/20 text-white hover:bg-white/5 backdrop-blur-sm transition-all duration-300"
               onClick={() => window.open('https://www.linkedin.com/in/siddharth-singh-6414432b2/', '_blank')}
             >
               <Linkedin className="mr-2 h-5 w-5" />
@@ -72,7 +72,7 @@ export const ContactSection = () => {
             <Button 
               variant="outline" 
               size="lg"
-              className="bg-gradient-to-r from-pink-600/30 to-rose-600/30 hover:from-pink-500/40 hover:to-rose-500/40 border-pink-400/60 text-pink-100 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-pink-500/30"
+              className="bg-transparent border-white/20 text-white hover:bg-white/5 backdrop-blur-sm transition-all duration-300"
               onClick={() => window.open('https://www.instagram.com/ig_siddharth.7/', '_blank')}
             >
               <Instagram className="mr-2 h-5 w-5" />
