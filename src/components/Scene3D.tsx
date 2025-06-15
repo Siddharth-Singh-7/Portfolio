@@ -1,7 +1,7 @@
 
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { OrbitControls, Environment, Float, Text3D, Center, MeshDistortMaterial, Sphere } from '@react-three/drei';
+import { OrbitControls, Environment, Float, Text3D, Center } from '@react-three/drei';
 import { Group } from 'three';
 import { ProjectCards } from './ProjectCards';
 import { SkillsOrb } from './SkillsOrb';
@@ -19,7 +19,7 @@ export const Scene3D = () => {
     <>
       {/* Lighting */}
       <ambientLight intensity={0.4} />
-      <directionalLight position={[10, 10, 5]} intensity={1} castShadow />
+      <directionalLight position={[10, 10, 5]} intensity={1} />
       <pointLight position={[-10, -10, -10]} intensity={0.5} color="#7c3aed" />
       
       {/* Environment */}
@@ -52,12 +52,7 @@ export const Scene3D = () => {
               bevelSegments={5}
             >
               SIDDHARTH SINGH
-              <MeshDistortMaterial
-                color="#7c3aed"
-                distort={0.2}
-                speed={2}
-                roughness={0.4}
-              />
+              <meshStandardMaterial color="#7c3aed" />
             </Text3D>
           </Center>
         </Float>
@@ -75,31 +70,6 @@ export const Scene3D = () => {
               <meshStandardMaterial color="#a855f7" />
             </Text3D>
           </Center>
-        </Float>
-
-        {/* Background Spheres */}
-        <Float speed={1} rotationIntensity={1} floatIntensity={1}>
-          <Sphere position={[-6, 2, -5]} scale={0.5}>
-            <MeshDistortMaterial
-              color="#7c3aed"
-              distort={0.6}
-              speed={1.5}
-              transparent
-              opacity={0.6}
-            />
-          </Sphere>
-        </Float>
-
-        <Float speed={1.2} rotationIntensity={0.8} floatIntensity={0.8}>
-          <Sphere position={[6, -1, -3]} scale={0.3}>
-            <MeshDistortMaterial
-              color="#a855f7"
-              distort={0.4}
-              speed={2}
-              transparent
-              opacity={0.4}
-            />
-          </Sphere>
         </Float>
 
         {/* Project Cards */}

@@ -31,7 +31,7 @@ export const SkillsOrb = () => {
       onPointerOver={() => setShowSkills(true)}
       onPointerOut={() => setShowSkills(false)}
     >
-      <Sphere scale={showSkills ? 1.2 : 1} castShadow>
+      <Sphere scale={showSkills ? 1.2 : 1}>
         <meshStandardMaterial 
           color="#7c3aed" 
           transparent 
