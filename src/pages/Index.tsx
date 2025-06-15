@@ -13,7 +13,10 @@ import { ContactSection } from '../components/ContactSection';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-900 via-purple-900 to-slate-900 text-white overflow-x-hidden">
+    <div className="min-h-screen bg-black text-white overflow-x-hidden relative">
+      {/* Animated background grid */}
+      <div className="fixed inset-0 bg-[linear-gradient(rgba(0,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,255,255,0.03)_1px,transparent_1px)] bg-[size:50px_50px] animate-pulse" />
+      
       {/* Hero Section with 3D Background */}
       <div className="relative h-screen">
         <Canvas
@@ -28,8 +31,8 @@ const Index = () => {
         <HeroSection />
       </div>
 
-      {/* Main Content Sections */}
-      <div className="relative z-10">
+      {/* Main Content Sections with glass morphism */}
+      <div className="relative z-10 backdrop-blur-sm">
         <AboutSection />
         <SkillsSection />
         <ProjectsSection />
