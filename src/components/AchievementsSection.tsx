@@ -47,8 +47,12 @@ export const AchievementsSection = () => {
       icon: Users,
       details: "Served as Lead Organizer for HackDiwas 2.0, a national-level hackathon hosted at United University (May 1–2, 2025). Coordinated end-to-end event execution from team registrations to final judging, managed communications between mentors, judges, participants, and sponsors. Oversaw team logistics, technical infrastructure, and day-of-event support. Contributed to the event's smooth execution alongside co-leads Kavaljeet, Aakash, Shivraj, and Anshuman. Helped deliver a successful, large-scale hackathon with nationwide student participation and promoted innovation and tech collaboration through well-structured ideation and demo sessions.",
       photos: [
-        "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
-        "https://images.unsplash.com/photo-1591115765373-5207764f72e7"
+        "/lovable-uploads/dad0b21c-5e5a-4011-b4dc-0469a943f2c9.png",
+        "/lovable-uploads/8fc861ee-2888-4d53-9feb-9d6635569157.png",
+        "/lovable-uploads/9b116ae7-f8eb-49c5-b3eb-5042cd756946.png",
+        "/lovable-uploads/d14bc1c0-ea00-4d03-83a2-05a7c1aa6bfc.png",
+        "/lovable-uploads/603a9dac-5995-4f5b-a311-e99ea2a4a409.png",
+        "/lovable-uploads/bd9cc981-74a9-4d31-97f0-c974d535454f.png"
       ],
       skills: ["Event Management", "Team Leadership", "Communication", "Project Coordination", "Problem Solving", "Stakeholder Management", "Technical Infrastructure"]
     }
