@@ -1,12 +1,25 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import { Canvas } from '@react-three/fiber';
+import { Suspense } from 'react';
+import { Scene3D } from '../components/Scene3D';
+import { LoadingScreen } from '../components/LoadingScreen';
+import { FloatingUI } from '../components/FloatingUI';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="h-screen w-full overflow-hidden bg-gradient-to-b from-slate-900 via-purple-900 to-slate-900">
+      <Canvas
+        camera={{ position: [0, 0, 8], fov: 75 }}
+        shadows
+        className="w-full h-full"
+      >
+        <Suspense fallback={null}>
+          <Scene3D />
+        </Suspense>
+      </Canvas>
+      <Suspense fallback={<LoadingScreen />}>
+        <FloatingUI />
+      </Suspense>
     </div>
   );
 };
