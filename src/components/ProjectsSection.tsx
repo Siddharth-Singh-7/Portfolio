@@ -70,10 +70,6 @@ export const ProjectsSection = () => {
       status: "In Progress",
       gradient: "from-purple-500 to-pink-500",
       details: "Austra Motion Studio is a cutting-edge website for a digital marketing agency that showcases their services through stunning animations and interactive elements. The project emphasizes smooth user experience with carefully crafted micro-interactions, parallax scrolling effects, and dynamic content presentation. Built with performance in mind, the site features optimized animations that maintain 60fps across all devices while delivering an engaging user experience.",
-      photos: [
-        "https://images.unsplash.com/photo-1460925895917-afdab827c52f",
-        "https://images.unsplash.com/photo-1558655146-d09347e92766"
-      ],
       features: [
         "Smooth parallax scrolling with optimized performance",
         "Interactive service showcase with hover animations",
