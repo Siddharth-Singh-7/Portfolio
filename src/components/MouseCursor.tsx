@@ -21,10 +21,10 @@ export const MouseCursor = () => {
       targetY = e.clientY;
       setMousePosition({ x: targetX, y: targetY });
       
-      // Add trail point
+      // Add trail point with smoother trail
       trailIdRef.current += 1;
       setTrail(prev => [
-        ...prev.slice(-8), // Keep only last 8 points
+        ...prev.slice(-12), // Keep more trail points for smoother effect
         { x: targetX, y: targetY, id: trailIdRef.current }
       ]);
     };
@@ -42,9 +42,14 @@ export const MouseCursor = () => {
     const handleMouseUp = () => setIsClicking(false);
 
     const animatePosition = () => {
-      const ease = 0.15;
-      currentX += (targetX - currentX) * ease;
-      currentY += (targetY - currentY) * ease;
+      // Much smoother easing for more fluid movement
+      const ease = 0.08;
+      const deltaX = targetX - currentX;
+      const deltaY = targetY - currentY;
+      
+      // Apply smoother interpolation
+      currentX += deltaX * ease;
+      currentY += deltaY * ease;
       
       setSmoothPosition({ x: currentX, y: currentY });
       animationRef.current = requestAnimationFrame(animatePosition);
@@ -69,31 +74,31 @@ export const MouseCursor = () => {
 
   return (
     <>
-      {/* Trail effect */}
+      {/* Enhanced trail effect with smoother transitions */}
       {trail.map((point, index) => (
         <div
           key={point.id}
-          className="fixed top-0 left-0 w-1 h-1 bg-white/20 rounded-full pointer-events-none z-40"
+          className="fixed top-0 left-0 w-1 h-1 bg-white/25 rounded-full pointer-events-none z-40 transition-opacity duration-150"
           style={{
             transform: `translate3d(${point.x - 2}px, ${point.y - 2}px, 0)`,
-            opacity: (index + 1) / trail.length * 0.3,
+            opacity: (index + 1) / trail.length * 0.4,
             willChange: 'transform, opacity',
           }}
         />
       ))}
       
-      {/* Main cursor dot */}
+      {/* Main cursor dot with smoother scaling */}
       <div
-        className="fixed top-0 left-0 w-1.5 h-1.5 bg-white rounded-full pointer-events-none z-50 mix-blend-difference transition-all duration-100"
+        className="fixed top-0 left-0 w-1.5 h-1.5 bg-white rounded-full pointer-events-none z-50 mix-blend-difference transition-transform duration-75 ease-out"
         style={{
-          transform: `translate3d(${mousePosition.x - 3}px, ${mousePosition.y - 3}px, 0) scale(${isClicking ? 0.8 : 1})`,
+          transform: `translate3d(${mousePosition.x - 3}px, ${mousePosition.y - 3}px, 0) scale(${isClicking ? 0.7 : 1})`,
           willChange: 'transform',
         }}
       />
       
-      {/* Outer ring */}
+      {/* Outer ring with smoother following */}
       <div
-        className="fixed top-0 left-0 w-8 h-8 border border-white/30 rounded-full pointer-events-none z-40 transition-all duration-300 ease-out"
+        className="fixed top-0 left-0 w-8 h-8 border border-white/30 rounded-full pointer-events-none z-40 transition-all duration-200 ease-out"
         style={{
           transform: `translate3d(${smoothPosition.x - 16}px, ${smoothPosition.y - 16}px, 0) scale(${isHovering ? 1.8 : 1})`,
           borderColor: isHovering ? 'rgba(255,255,255,0.6)' : 'rgba(255,255,255,0.3)',
@@ -101,9 +106,9 @@ export const MouseCursor = () => {
         }}
       />
       
-      {/* Magnetic field effect */}
+      {/* Magnetic field effect with enhanced smoothness */}
       <div
-        className="fixed top-0 left-0 w-16 h-16 border border-white/10 rounded-full pointer-events-none z-30 transition-all duration-500 ease-out"
+        className="fixed top-0 left-0 w-16 h-16 border border-white/10 rounded-full pointer-events-none z-30 transition-all duration-400 ease-out"
         style={{
           transform: `translate3d(${smoothPosition.x - 32}px, ${smoothPosition.y - 32}px, 0) scale(${isHovering ? 1.2 : 0.8})`,
           opacity: isHovering ? 0.4 : 0.1,
