@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
@@ -17,8 +16,8 @@ export const ProjectsSection = () => {
       gradient: "from-green-500 to-cyan-500",
       details: "HealthDesk AI is a comprehensive health monitoring platform that leverages artificial intelligence to provide personalized health insights and recommendations. The application features real-time health data tracking, symptom analysis using natural language processing, and predictive health analytics. Users can input their daily health metrics, receive AI-powered recommendations, and track their progress over time with detailed visualizations and reports.",
       photos: [
-        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56",
-        "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f"
+        "/lovable-uploads/c4f76d2c-280b-4287-87e0-52f1d41efc2e.png",
+        "/lovable-uploads/36f6fa9a-a729-4c9f-a4f6-e816152b3470.png"
       ],
       features: [
         "Real-time health data visualization with interactive charts",
