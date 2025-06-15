@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
-import { ExternalLink, Github } from "lucide-react";
+import { Github } from "lucide-react";
 import { DetailedOverview } from "./DetailedOverview";
 
 export const ProjectsSection = () => {
@@ -33,8 +33,7 @@ export const ProjectsSection = () => {
         "Ensured data privacy and security for sensitive health information",
         "Optimized performance for real-time data processing"
       ],
-      github: "https://github.com/siddharth/healthdesk-ai",
-      demo: "https://healthdesk-ai.demo.com"
+      github: "https://github.com/Siddharth-Singh-7/HealthDesk-AI"
     },
     {
       title: "Visualisation Pizza",
@@ -60,7 +59,7 @@ export const ProjectsSection = () => {
         "Created intelligent data type detection and visualization suggestions",
         "Built responsive design that works across different screen sizes"
       ],
-      github: "https://github.com/siddharth/visualisation-pizza"
+      github: "https://github.com/Siddharth-Singh-7/visualisation-pizza-dummy-main"
     },
     {
       title: "Austra Motion Studio",
@@ -85,7 +84,8 @@ export const ProjectsSection = () => {
         "Implemented complex scroll-triggered animations without affecting performance",
         "Created seamless transitions between different sections",
         "Ensured accessibility compliance while maintaining visual appeal"
-      ]
+      ],
+      github: "https://github.com/Siddharth-Singh-7/austra-studio"
     }
   ];
 
@@ -132,7 +132,6 @@ export const ProjectsSection = () => {
                   {project.status}
                 </Badge>
                 <div className="ml-auto flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  {project.demo && <ExternalLink className="w-4 h-4 text-cyan-400 hover:text-cyan-300 cursor-pointer" />}
                   {project.github && <Github className="w-4 h-4 text-cyan-400 hover:text-cyan-300 cursor-pointer" />}
                 </div>
               </div>
