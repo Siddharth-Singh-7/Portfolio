@@ -1,7 +1,6 @@
-
 import { useState } from "react";
 import { Card, CardContent } from "./ui/card";
-import { Trophy, Award } from "lucide-react";
+import { Trophy, Award, Users } from "lucide-react";
 import { DetailedOverview } from "./DetailedOverview";
 
 export const AchievementsSection = () => {
@@ -37,6 +36,21 @@ export const AchievementsSection = () => {
         "https://images.unsplash.com/photo-1516321318423-f06f85e504b3"
       ],
       skills: ["React Native", "Augmented Reality", "GPS Integration", "Firebase", "UI/UX Design", "Problem Solving"]
+    },
+    {
+      title: "HackDiwas 2.0",
+      organization: "United University",
+      position: "Lead Organizer 🎯",
+      description: "Core member of the organizing team for the national-level hackathon, coordinating end-to-end event execution",
+      year: "2025",
+      gradient: "from-emerald-400 to-teal-500",
+      icon: Users,
+      details: "Served as Lead Organizer for HackDiwas 2.0, a national-level hackathon hosted at United University (May 1–2, 2025). Coordinated end-to-end event execution from team registrations to final judging, managed communications between mentors, judges, participants, and sponsors. Oversaw team logistics, technical infrastructure, and day-of-event support. Contributed to the event's smooth execution alongside co-leads Kavaljeet, Aakash, Shivraj, and Anshuman. Helped deliver a successful, large-scale hackathon with nationwide student participation and promoted innovation and tech collaboration through well-structured ideation and demo sessions.",
+      photos: [
+        "https://images.unsplash.com/photo-1540575467063-178a50c2df87",
+        "https://images.unsplash.com/photo-1591115765373-5207764f72e7"
+      ],
+      skills: ["Event Management", "Team Leadership", "Communication", "Project Coordination", "Problem Solving", "Stakeholder Management", "Technical Infrastructure"]
     }
   ];
 
@@ -61,7 +75,7 @@ export const AchievementsSection = () => {
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-8 relative z-10">
+      <div className="grid md:grid-cols-3 gap-8 relative z-10">
         {achievements.map((achievement, index) => {
           const IconComponent = achievement.icon;
           return (
