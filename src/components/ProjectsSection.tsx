@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Badge } from "./ui/badge";
@@ -89,11 +90,11 @@ export const ProjectsSection = () => {
 
   return (
     <section className="py-20 px-4 max-w-6xl mx-auto relative">
-      {/* Tech grid background */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="grid grid-cols-12 grid-rows-8 h-full w-full">
-          {Array.from({ length: 96 }).map((_, i) => (
-            <div key={i} className="border border-cyan-400 animate-pulse" style={{ animationDelay: `${i * 0.1}s` }}></div>
+      {/* Optimized tech grid background */}
+      <div className="absolute inset-0 opacity-3">
+        <div className="grid grid-cols-8 grid-rows-6 h-full w-full">
+          {Array.from({ length: 48 }).map((_, i) => (
+            <div key={i} className="border border-cyan-400/20" style={{ animationDelay: `${i * 0.2}s` }}></div>
           ))}
         </div>
       </div>
@@ -102,7 +103,7 @@ export const ProjectsSection = () => {
         <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-green-400 to-cyan-500 bg-clip-text text-transparent">
           Featured Projects
         </h2>
-        <div className="absolute inset-0 text-4xl md:text-5xl font-bold text-green-400 opacity-10 blur-sm">
+        <div className="absolute inset-0 text-4xl md:text-5xl font-bold text-green-400 opacity-5 blur-sm">
           Featured Projects
         </div>
         <p className="text-lg text-gray-300 relative z-10">
@@ -114,36 +115,36 @@ export const ProjectsSection = () => {
         {projects.map((project, index) => (
           <Card 
             key={index} 
-            className="bg-black/50 border border-gray-700/50 backdrop-blur-sm hover:scale-105 transition-all duration-300 cursor-pointer group hover:border-cyan-400/50 hover:shadow-lg hover:shadow-cyan-400/20"
+            className="bg-black/40 border border-gray-700/30 backdrop-blur-sm hover:scale-[1.02] transition-all duration-200 cursor-pointer group hover:border-cyan-400/40 hover:shadow-lg hover:shadow-cyan-400/10"
             onClick={() => setSelectedProject(project)}
           >
             <CardHeader className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/5 to-purple-400/5 rounded-t-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <CardTitle className={`text-xl bg-gradient-to-r ${project.gradient} bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-200 relative z-10`}>
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/3 to-purple-400/3 rounded-t-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
+              <CardTitle className={`text-xl bg-gradient-to-r ${project.gradient} bg-clip-text text-transparent group-hover:scale-[1.02] transition-transform duration-150 relative z-10`}>
                 {project.title}
               </CardTitle>
               <div className="flex items-center gap-2 relative z-10">
                 <Badge 
                   variant={project.status === "Completed" ? "default" : "secondary"}
-                  className={`${project.status === "Completed" ? 'bg-green-500/20 text-green-400 border-green-500/30' : 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30'} backdrop-blur-sm`}
+                  className={`${project.status === "Completed" ? 'bg-green-500/15 text-green-400 border-green-500/25' : 'bg-yellow-500/15 text-yellow-400 border-yellow-500/25'} backdrop-blur-sm`}
                 >
                   {project.status}
                 </Badge>
-                <div className="ml-auto flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <div className="ml-auto flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                   {project.github && <Github className="w-4 h-4 text-cyan-400 hover:text-cyan-300 cursor-pointer" />}
                 </div>
               </div>
             </CardHeader>
             <CardContent className="relative">
-              <p className="text-gray-300 mb-4 group-hover:text-gray-200 transition-colors duration-300">{project.description}</p>
+              <p className="text-gray-300 mb-4 group-hover:text-gray-200 transition-colors duration-200">{project.description}</p>
               <div className="flex flex-wrap gap-2 mb-2">
                 {project.technologies.map((tech, techIndex) => (
-                  <Badge key={techIndex} variant="outline" className="text-xs border-gray-600 text-gray-400 hover:border-cyan-400/50 hover:text-cyan-300 transition-all duration-300">
+                  <Badge key={techIndex} variant="outline" className="text-xs border-gray-600/50 text-gray-400 hover:border-cyan-400/40 hover:text-cyan-300 transition-all duration-200">
                     {tech}
                   </Badge>
                 ))}
               </div>
-              <p className="text-xs text-cyan-400 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <p className="text-xs text-cyan-400 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                 Click to view details
               </p>
             </CardContent>

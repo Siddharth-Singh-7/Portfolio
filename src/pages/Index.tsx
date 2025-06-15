@@ -1,6 +1,6 @@
 
 import { Canvas } from '@react-three/fiber';
-import { Suspense, useState } from 'react';
+import { Suspense, useState, memo } from 'react';
 import { Scene3D } from '../components/Scene3D';
 import { LoadingScreen } from '../components/LoadingScreen';
 import { HeroSection } from '../components/HeroSection';
@@ -15,6 +15,12 @@ import { MouseCursor } from '../components/MouseCursor';
 import { ParticleField } from '../components/ParticleField';
 import { GeometricShapes } from '../components/GeometricShapes';
 import { InteractiveGrid } from '../components/InteractiveGrid';
+
+// Memoize heavy components
+const MemoizedScene3D = memo(Scene3D);
+const MemoizedParticleField = memo(ParticleField);
+const MemoizedGeometricShapes = memo(GeometricShapes);
+const MemoizedFloatingTechIcons = memo(FloatingTechIcons);
 
 const Index = () => {
   const [showMainContent, setShowMainContent] = useState(false);
@@ -32,25 +38,30 @@ const Index = () => {
       {/* Custom mouse cursor */}
       <MouseCursor />
       <InteractiveGrid />
-      <ParticleField />
-      <GeometricShapes />
-      <FloatingTechIcons />
+      <MemoizedParticleField />
+      <MemoizedGeometricShapes />
+      <MemoizedFloatingTechIcons />
       
-      <div className="fixed inset-0 z-0 opacity-40">
+      <div className="fixed inset-0 z-0 opacity-30">
         <Canvas
           camera={{ position: [0, 0, 15], fov: 65 }}
           className="w-full h-full"
-          gl={{ antialias: true, alpha: true }}
+          gl={{ 
+            antialias: true, 
+            alpha: true,
+            powerPreference: "high-performance"
+          }}
+          dpr={Math.min(window.devicePixelRatio, 2)}
         >
           <Suspense fallback={null}>
-            <Scene3D />
+            <MemoizedScene3D />
           </Suspense>
         </Canvas>
       </div>
 
       <div className="relative z-10">
         <HeroSection />
-        <div className="backdrop-blur-[2px] bg-black/30">
+        <div className="backdrop-blur-[1px] bg-black/20">
           <AboutSection />
           <SkillsSection />
           <ProjectsSection />
@@ -59,8 +70,6 @@ const Index = () => {
           <ContactSection />
         </div>
       </div>
-
-      <Suspense fallback={null} />
     </div>
   );
 };

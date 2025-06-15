@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Card, CardContent } from "./ui/card";
 import { Trophy, Award, Users } from "lucide-react";
@@ -62,18 +63,17 @@ export const AchievementsSection = () => {
 
   return (
     <section className="py-20 px-4 max-w-6xl mx-auto relative">
-      {/* Floating elements */}
+      {/* Simplified floating elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-20 w-2 h-2 bg-yellow-400 rounded-full animate-ping"></div>
-        <div className="absolute bottom-20 right-20 w-3 h-3 bg-cyan-400 rounded-full animate-pulse"></div>
-        <div className="absolute top-40 right-40 w-1 h-1 bg-purple-400 rounded-full animate-bounce"></div>
+        <div className="absolute top-20 left-20 w-2 h-2 bg-yellow-400/30 rounded-full animate-pulse"></div>
+        <div className="absolute bottom-20 right-20 w-3 h-3 bg-cyan-400/30 rounded-full animate-pulse"></div>
       </div>
       
       <div className="text-center mb-16 relative z-10">
         <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
           Achievements
         </h2>
-        <div className="absolute inset-0 text-4xl md:text-5xl font-bold text-yellow-400 opacity-10 blur-sm">
+        <div className="absolute inset-0 text-4xl md:text-5xl font-bold text-yellow-400 opacity-5 blur-sm">
           Achievements
         </div>
         <p className="text-lg text-gray-300 relative z-10">
@@ -87,30 +87,30 @@ export const AchievementsSection = () => {
           return (
             <Card 
               key={index} 
-              className="bg-black/50 border border-gray-700/50 backdrop-blur-sm hover:scale-105 transition-all duration-300 group hover:border-yellow-400/50 hover:shadow-lg hover:shadow-yellow-400/20 cursor-pointer"
+              className="bg-black/40 border border-gray-700/30 backdrop-blur-sm hover:scale-[1.02] transition-all duration-200 group hover:border-yellow-400/40 hover:shadow-lg hover:shadow-yellow-400/10 cursor-pointer"
               onClick={() => setSelectedAchievement(achievement)}
             >
               <CardContent className="p-6 relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/5 to-orange-400/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/3 to-orange-400/3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200"></div>
                 <div className="flex justify-between items-start mb-4 relative z-10">
                   <div className="flex items-center gap-3">
-                    <IconComponent className="w-8 h-8 text-yellow-400 group-hover:animate-pulse" />
+                    <IconComponent className="w-8 h-8 text-yellow-400" />
                     <div className={`text-2xl font-bold bg-gradient-to-r ${achievement.gradient} bg-clip-text text-transparent`}>
                       {achievement.position}
                     </div>
                   </div>
-                  <div className="text-sm text-gray-400 bg-gray-800/50 px-2 py-1 rounded-full border border-gray-600/50">
+                  <div className="text-sm text-gray-400 bg-gray-800/30 px-2 py-1 rounded-full border border-gray-600/30">
                     {achievement.year}
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-yellow-100 transition-colors duration-300 relative z-10">
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-yellow-100 transition-colors duration-200 relative z-10">
                   {achievement.title}
                 </h3>
                 <p className="text-sm text-gray-400 mb-3 relative z-10">{achievement.organization}</p>
-                <p className="text-gray-300 group-hover:text-gray-200 transition-colors duration-300 relative z-10">
+                <p className="text-gray-300 group-hover:text-gray-200 transition-colors duration-200 relative z-10">
                   {achievement.description}
                 </p>
-                <p className="text-xs text-yellow-400 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="text-xs text-yellow-400 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
                   Click to view details
                 </p>
               </CardContent>
