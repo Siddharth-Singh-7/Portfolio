@@ -43,18 +43,17 @@ export const FloatingTechIcons = () => {
         return (
           <div
             key={index}
-            className={`absolute ${position} ${color} opacity-20 group`}
+            className={`absolute ${position} ${color} opacity-20 group animate-float`}
             style={{ 
               animationDelay: delay, 
-              animationDuration: "4s",
-              animation: `float ${4 + index * 0.2}s ease-in-out infinite alternate`
+              animationDuration: `${4 + index * 0.2}s`
             }}
           >
             <div 
-              className="relative"
+              className="relative animate-spin-slow"
               style={{ 
                 animationDelay: delay,
-                animation: `spin ${8 + index * 0.5}s linear infinite`
+                animationDuration: `${8 + index * 0.5}s`
               }}
             >
               <Icon size={28} className="drop-shadow-lg filter hover:drop-shadow-xl transition-all duration-300" />
@@ -68,19 +67,6 @@ export const FloatingTechIcons = () => {
           </div>
         );
       })}
-      
-      {/* Custom floating animation keyframes */}
-      <style jsx>{`
-        @keyframes float {
-          0% { transform: translateY(0px) rotate(0deg); }
-          100% { transform: translateY(-20px) rotate(360deg); }
-        }
-        
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-      `}</style>
     </div>
   );
 };
