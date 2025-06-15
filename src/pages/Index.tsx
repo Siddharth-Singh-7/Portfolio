@@ -12,6 +12,8 @@ const Index = () => {
         camera={{ position: [0, 0, 8], fov: 75 }}
         shadows
         className="w-full h-full"
+        gl={{ antialias: true, alpha: false }}
+        dpr={[1, 2]}
       >
         <Suspense fallback={null}>
           <Scene3D />
