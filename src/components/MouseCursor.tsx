@@ -1,13 +1,22 @@
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 export const MouseCursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [smoothPosition, setSmoothPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const animationRef = useRef<number>();
 
   useEffect(() => {
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+
     const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+      targetX = e.clientX;
+      targetY = e.clientY;
+      setMousePosition({ x: targetX, y: targetY });
     };
 
     const handleMouseOver = (e: MouseEvent) => {
@@ -19,40 +28,56 @@ export const MouseCursor = () => {
       }
     };
 
+    const animatePosition = () => {
+      // Smooth interpolation with easing
+      const ease = 0.15;
+      currentX += (targetX - currentX) * ease;
+      currentY += (targetY - currentY) * ease;
+      
+      setSmoothPosition({ x: currentX, y: currentY });
+      animationRef.current = requestAnimationFrame(animatePosition);
+    };
+
     window.addEventListener('mousemove', updateMousePosition);
     window.addEventListener('mouseover', handleMouseOver);
+    animationRef.current = requestAnimationFrame(animatePosition);
 
     return () => {
       window.removeEventListener('mousemove', updateMousePosition);
       window.removeEventListener('mouseover', handleMouseOver);
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
     };
   }, []);
 
   return (
     <>
-      {/* Main cursor */}
+      {/* Main cursor - follows mouse exactly */}
       <div
-        className="fixed top-0 left-0 w-6 h-6 rounded-full border-2 border-cyan-400 pointer-events-none z-50 mix-blend-difference transition-transform duration-150"
+        className="fixed top-0 left-0 w-4 h-4 rounded-full border border-cyan-400/60 pointer-events-none z-50 mix-blend-difference transition-transform duration-100 ease-out"
         style={{
-          transform: `translate(${mousePosition.x - 12}px, ${mousePosition.y - 12}px) scale(${isHovering ? 1.5 : 1})`,
+          transform: `translate3d(${mousePosition.x - 8}px, ${mousePosition.y - 8}px, 0) scale(${isHovering ? 2 : 1})`,
+          willChange: 'transform',
         }}
       />
       
-      {/* Trailing cursor */}
+      {/* Trailing cursor - smooth follow */}
       <div
-        className="fixed top-0 left-0 w-2 h-2 bg-cyan-400 rounded-full pointer-events-none z-50 transition-all duration-300"
+        className="fixed top-0 left-0 w-8 h-8 rounded-full border border-cyan-400/30 pointer-events-none z-40 transition-transform duration-200 ease-out"
         style={{
-          transform: `translate(${mousePosition.x - 4}px, ${mousePosition.y - 4}px)`,
-          opacity: 0.7,
+          transform: `translate3d(${smoothPosition.x - 16}px, ${smoothPosition.y - 16}px, 0) scale(${isHovering ? 1.5 : 1})`,
+          willChange: 'transform',
         }}
       />
       
-      {/* Glow effect */}
+      {/* Glow effect - even smoother follow */}
       <div
-        className="fixed top-0 left-0 w-20 h-20 rounded-full pointer-events-none z-40 transition-all duration-500"
+        className="fixed top-0 left-0 w-16 h-16 rounded-full pointer-events-none z-30 transition-all duration-300 ease-out"
         style={{
-          transform: `translate(${mousePosition.x - 40}px, ${mousePosition.y - 40}px)`,
+          transform: `translate3d(${smoothPosition.x - 32}px, ${smoothPosition.y - 32}px, 0) scale(${isHovering ? 1.2 : 1})`,
           background: 'radial-gradient(circle, rgba(0, 255, 255, 0.1) 0%, transparent 70%)',
+          willChange: 'transform',
         }}
       />
     </>
