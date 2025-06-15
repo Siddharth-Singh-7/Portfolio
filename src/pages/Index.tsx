@@ -1,6 +1,6 @@
 
 import { Canvas } from '@react-three/fiber';
-import { Suspense } from 'react';
+import { Suspense, useState } from 'react';
 import { Scene3D } from '../components/Scene3D';
 import { LoadingScreen } from '../components/LoadingScreen';
 import { HeroSection } from '../components/HeroSection';
@@ -17,24 +17,25 @@ import { GeometricShapes } from '../components/GeometricShapes';
 import { InteractiveGrid } from '../components/InteractiveGrid';
 
 const Index = () => {
+  const [showMainContent, setShowMainContent] = useState(false);
+
+  const handleEnterWebsite = () => {
+    setShowMainContent(true);
+  };
+
+  if (!showMainContent) {
+    return <LoadingScreen onEnterWebsite={handleEnterWebsite} />;
+  }
+
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden relative cursor-none">
       {/* Custom mouse cursor */}
       <MouseCursor />
-      
-      {/* Interactive grid background */}
       <InteractiveGrid />
-      
-      {/* Particle field effect */}
       <ParticleField />
-      
-      {/* Geometric shapes */}
       <GeometricShapes />
-      
-      {/* Floating Tech Icons */}
       <FloatingTechIcons />
       
-      {/* Enhanced 3D Scene Background */}
       <div className="fixed inset-0 z-0 opacity-40">
         <Canvas
           camera={{ position: [0, 0, 15], fov: 65 }}
@@ -47,7 +48,6 @@ const Index = () => {
         </Canvas>
       </div>
 
-      {/* Main Content */}
       <div className="relative z-10">
         <HeroSection />
         <div className="backdrop-blur-[2px] bg-black/30">
@@ -60,7 +60,7 @@ const Index = () => {
         </div>
       </div>
 
-      <Suspense fallback={<LoadingScreen />} />
+      <Suspense fallback={null} />
     </div>
   );
 };

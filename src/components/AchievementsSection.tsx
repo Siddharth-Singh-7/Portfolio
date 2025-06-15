@@ -1,8 +1,12 @@
 
+import { useState } from "react";
 import { Card, CardContent } from "./ui/card";
 import { Trophy, Award } from "lucide-react";
+import { DetailedOverview } from "./DetailedOverview";
 
 export const AchievementsSection = () => {
+  const [selectedAchievement, setSelectedAchievement] = useState<any>(null);
+
   const achievements = [
     {
       title: "Build With AI Startup",
@@ -11,7 +15,13 @@ export const AchievementsSection = () => {
       description: "Developed an innovative AI-powered solution that secured second place in this prestigious competition",
       year: "2024",
       gradient: "from-yellow-400 to-orange-500",
-      icon: Trophy
+      icon: Trophy,
+      details: "Built a comprehensive AI-powered healthcare solution that intelligently analyzes patient data and provides personalized treatment recommendations. The project involved complex machine learning algorithms, natural language processing for symptom analysis, and a user-friendly interface for both patients and healthcare providers. Our team worked for 48 hours straight, implementing features like real-time health monitoring, predictive analytics, and automated report generation.",
+      photos: [
+        "https://images.unsplash.com/photo-1559757148-5c350d0d3c56",
+        "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789"
+      ],
+      skills: ["React", "Python", "Machine Learning", "TensorFlow", "Natural Language Processing", "UI/UX Design", "Team Leadership"]
     },
     {
       title: "HackDiwas",
@@ -20,7 +30,13 @@ export const AchievementsSection = () => {
       description: "Reached the finals with a creative solution showcasing technical excellence and innovation",
       year: "2024",
       gradient: "from-blue-400 to-purple-500",
-      icon: Award
+      icon: Award,
+      details: "Created an innovative campus navigation system that uses augmented reality to help students find their way around university campuses. The application combines GPS technology with AR overlays to provide real-time directions, building information, and event notifications. We implemented features like indoor navigation using WiFi triangulation, integration with university databases for real-time room availability, and a social component for students to share tips and reviews about campus locations.",
+      photos: [
+        "https://images.unsplash.com/photo-1531297484001-80022131f5a1",
+        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3"
+      ],
+      skills: ["React Native", "Augmented Reality", "GPS Integration", "Firebase", "UI/UX Design", "Problem Solving"]
     }
   ];
 
@@ -49,7 +65,11 @@ export const AchievementsSection = () => {
         {achievements.map((achievement, index) => {
           const IconComponent = achievement.icon;
           return (
-            <Card key={index} className="bg-black/50 border border-gray-700/50 backdrop-blur-sm hover:scale-105 transition-all duration-300 group hover:border-yellow-400/50 hover:shadow-lg hover:shadow-yellow-400/20">
+            <Card 
+              key={index} 
+              className="bg-black/50 border border-gray-700/50 backdrop-blur-sm hover:scale-105 transition-all duration-300 group hover:border-yellow-400/50 hover:shadow-lg hover:shadow-yellow-400/20 cursor-pointer"
+              onClick={() => setSelectedAchievement(achievement)}
+            >
               <CardContent className="p-6 relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/5 to-orange-400/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <div className="flex justify-between items-start mb-4 relative z-10">
@@ -70,11 +90,21 @@ export const AchievementsSection = () => {
                 <p className="text-gray-300 group-hover:text-gray-200 transition-colors duration-300 relative z-10">
                   {achievement.description}
                 </p>
+                <p className="text-xs text-yellow-400 mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  Click to view details
+                </p>
               </CardContent>
             </Card>
           );
         })}
       </div>
+
+      <DetailedOverview
+        isOpen={selectedAchievement !== null}
+        onClose={() => setSelectedAchievement(null)}
+        type="achievement"
+        data={selectedAchievement || achievements[0]}
+      />
     </section>
   );
 };
