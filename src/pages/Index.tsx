@@ -12,6 +12,9 @@ import { EducationSection } from '../components/EducationSection';
 import { ContactSection } from '../components/ContactSection';
 import { FloatingTechIcons } from '../components/FloatingTechIcons';
 import { MouseCursor } from '../components/MouseCursor';
+import { ParticleField } from '../components/ParticleField';
+import { GeometricShapes } from '../components/GeometricShapes';
+import { InteractiveGrid } from '../components/InteractiveGrid';
 
 const Index = () => {
   return (
@@ -19,16 +22,22 @@ const Index = () => {
       {/* Custom mouse cursor */}
       <MouseCursor />
       
-      {/* Subtle grid background */}
-      <div className="fixed inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:80px_80px]" />
+      {/* Interactive grid background */}
+      <InteractiveGrid />
+      
+      {/* Particle field effect */}
+      <ParticleField />
+      
+      {/* Geometric shapes */}
+      <GeometricShapes />
       
       {/* Floating Tech Icons */}
       <FloatingTechIcons />
       
-      {/* 3D Scene Background - more subtle */}
-      <div className="fixed inset-0 z-0 opacity-30">
+      {/* Enhanced 3D Scene Background */}
+      <div className="fixed inset-0 z-0 opacity-40">
         <Canvas
-          camera={{ position: [0, 0, 15], fov: 60 }}
+          camera={{ position: [0, 0, 15], fov: 65 }}
           className="w-full h-full"
           gl={{ antialias: true, alpha: true }}
         >
@@ -41,7 +50,7 @@ const Index = () => {
       {/* Main Content */}
       <div className="relative z-10">
         <HeroSection />
-        <div className="backdrop-blur-[1px] bg-black/20">
+        <div className="backdrop-blur-[2px] bg-black/30">
           <AboutSection />
           <SkillsSection />
           <ProjectsSection />
