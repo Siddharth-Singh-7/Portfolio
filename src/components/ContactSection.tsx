@@ -1,7 +1,6 @@
-
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
-import { Github, Linkedin, Mail, MapPin, Phone } from "lucide-react";
+import { Github, Linkedin, Mail, MapPin, Phone, Instagram } from "lucide-react";
 
 export const ContactSection = () => {
   return (
@@ -69,6 +68,15 @@ export const ContactSection = () => {
             >
               <Linkedin className="mr-2 h-5 w-5" />
               LinkedIn Profile
+            </Button>
+            <Button 
+              variant="outline" 
+              size="lg"
+              className="bg-gradient-to-r from-pink-600/30 to-rose-600/30 hover:from-pink-500/40 hover:to-rose-500/40 border-pink-400/60 text-pink-100 backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-pink-500/30"
+              onClick={() => window.open('https://www.instagram.com/ig_siddharth.7/', '_blank')}
+            >
+              <Instagram className="mr-2 h-5 w-5" />
+              Instagram Profile
             </Button>
           </div>
 
