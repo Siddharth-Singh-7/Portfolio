@@ -23,11 +23,20 @@ export const AnimatedBulb = () => {
         {/* Main bulb container */}
         <div className="relative w-full h-full rounded-full bg-gradient-to-br from-white/20 via-purple-500/10 to-blue-500/10 backdrop-blur-sm border border-white/20">
           
-          {/* Inner light core */}
-          <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 rounded-full transition-all duration-1000 ${
+          {/* Profile photo in the center */}
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 h-48 rounded-full overflow-hidden border-4 border-white/30">
+            <img 
+              src="/lovable-uploads/6f0b3eda-4a53-4469-8e5d-d92ced9fa719.png" 
+              alt="Siddharth Singh" 
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          {/* Inner light core behind the photo */}
+          <div className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-52 h-52 rounded-full transition-all duration-1000 -z-10 ${
             isGlowing 
-              ? 'bg-gradient-to-br from-yellow-200 via-white to-purple-200 shadow-[0_0_60px_rgba(255,255,255,0.8)]' 
-              : 'bg-gradient-to-br from-gray-300 via-gray-100 to-gray-200 shadow-[0_0_20px_rgba(255,255,255,0.3)]'
+              ? 'bg-gradient-to-br from-yellow-200/30 via-white/20 to-purple-200/30 shadow-[0_0_60px_rgba(255,255,255,0.5)]' 
+              : 'bg-gradient-to-br from-gray-300/20 via-gray-100/10 to-gray-200/20 shadow-[0_0_20px_rgba(255,255,255,0.2)]'
           }`}>
             
             {/* Filament lines */}
@@ -35,8 +44,8 @@ export const AnimatedBulb = () => {
               {Array.from({ length: 6 }).map((_, i) => (
                 <div
                   key={i}
-                  className={`absolute w-16 h-px transition-all duration-1000 ${
-                    isGlowing ? 'bg-orange-400' : 'bg-gray-400'
+                  className={`absolute w-20 h-px transition-all duration-1000 ${
+                    isGlowing ? 'bg-orange-400/60' : 'bg-gray-400/40'
                   }`}
                   style={{
                     transform: `rotate(${i * 30}deg)`,

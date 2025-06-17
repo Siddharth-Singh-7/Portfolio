@@ -25,12 +25,12 @@ export const WelcomeScreen = ({ onEnterWebsite }: WelcomeScreenProps) => {
       setCurrentWelcomeIndex((prev) => {
         if (prev >= welcomeMessages.length - 1) {
           clearInterval(timer);
-          setTimeout(() => onEnterWebsite(), 1100);
+          setTimeout(() => onEnterWebsite(), 500);
           return prev;
         }
         return prev + 1;
       });
-    }, 1100);
+    }, 500);
 
     return () => clearInterval(timer);
   }, [onEnterWebsite]);
