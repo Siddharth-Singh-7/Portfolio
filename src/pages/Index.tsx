@@ -2,7 +2,7 @@
 import { Canvas } from '@react-three/fiber';
 import { Suspense, useState, memo } from 'react';
 import { Scene3D } from '../components/Scene3D';
-import { LoadingScreen } from '../components/LoadingScreen';
+import { WelcomeScreen } from '../components/WelcomeScreen';
 import { HeroSection } from '../components/HeroSection';
 import { AboutSection } from '../components/AboutSection';
 import { SkillsSection } from '../components/SkillsSection';
@@ -30,12 +30,11 @@ const Index = () => {
   };
 
   if (!showMainContent) {
-    return <LoadingScreen onEnterWebsite={handleEnterWebsite} />;
+    return <WelcomeScreen onEnterWebsite={handleEnterWebsite} />;
   }
 
   return (
     <div className="min-h-screen bg-black text-white overflow-x-hidden relative cursor-none">
-      {/* Custom mouse cursor */}
       <MouseCursor />
       <InteractiveGrid />
       <MemoizedParticleField />

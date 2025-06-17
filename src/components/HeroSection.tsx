@@ -1,39 +1,40 @@
 
 import { Button } from "./ui/button";
 import { Github, Linkedin, FileText, ArrowRight } from "lucide-react";
+import { useTranslation } from 'react-i18next';
+import { AnimatedBulb } from './AnimatedBulb';
+import { LanguageSelector } from './LanguageSelector';
 
 export const HeroSection = () => {
+  const { t } = useTranslation();
+
   const handleViewResume = () => {
-    // Open the CV in a new tab
     window.open('/siddharthsinghcv_Latest.pdf', '_blank');
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center relative">
+      {/* Language selector in top right */}
+      <div className="absolute top-8 right-8 z-20">
+        <LanguageSelector />
+      </div>
+
       <div className="max-w-4xl mx-auto text-center space-y-12 px-4 z-10">
-        {/* Profile section */}
+        {/* Profile section with animated bulb */}
         <div className="space-y-8">
-          <div className="w-80 h-80 mx-auto relative">
-            <div className="w-full h-full rounded-full overflow-hidden border border-white/10 shadow-2xl">
-              <img 
-                src="/lovable-uploads/04f69df9-7777-43ee-b204-2741b7ddd12a.png" 
-                alt="Siddharth Singh" 
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-              />
-            </div>
-          </div>
+          <AnimatedBulb />
           
           {/* Name and title */}
           <div className="space-y-4">
             <h1 className="text-6xl md:text-8xl font-light tracking-tight text-white">
-              Siddharth Singh
+              {t('name')}
             </h1>
             <div className="space-y-2">
               <p className="text-xl md:text-2xl text-white/60 font-light">
-                AI Enthusiast & Full-Stack Developer
+                {t('title')}
               </p>
               <p className="text-lg text-white/40">
-                Hackathon Finalist • Problem Solver • Tech Innovator
+                {t('subtitle')}
               </p>
             </div>
           </div>
@@ -48,7 +49,7 @@ export const HeroSection = () => {
             onClick={handleViewResume}
           >
             <FileText className="mr-2 h-4 w-4" />
-            View Resume
+            {t('viewResume')}
             <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
           </Button>
           <Button 
@@ -58,7 +59,7 @@ export const HeroSection = () => {
             onClick={() => window.open('https://github.com/Siddharth-Singh-7', '_blank')}
           >
             <Github className="mr-2 h-4 w-4" />
-            GitHub
+            {t('github')}
           </Button>
           <Button 
             variant="outline" 
@@ -67,7 +68,7 @@ export const HeroSection = () => {
             onClick={() => window.open('https://www.linkedin.com/in/siddharth-singh-6414432b2/', '_blank')}
           >
             <Linkedin className="mr-2 h-4 w-4" />
-            LinkedIn
+            {t('linkedin')}
           </Button>
         </div>
         
