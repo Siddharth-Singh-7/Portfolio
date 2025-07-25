@@ -24,7 +24,7 @@ export const AnimatedBulb = () => {
         <div className="relative w-full h-full rounded-full bg-gradient-to-br from-white/20 via-purple-500/10 to-blue-500/10 backdrop-blur-sm border border-white/20">
           
           {/* Profile photo in the center */}
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 rounded-full overflow-hidden border-4 border-white/30">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 rounded-full overflow-hidden border-4 border-white/30">
             <img 
               src="/lovable-uploads/6f0b3eda-4a53-4469-8e5d-d92ced9fa719.png" 
               alt="Siddharth Singh" 
